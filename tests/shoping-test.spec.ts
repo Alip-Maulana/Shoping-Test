@@ -14,6 +14,21 @@ await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 
 });
 
+test('Failed-Username', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+  await expect(page).toHaveTitle('Swag Labs');
+  
+  //input username dan password
+  await page.locator('[data-test="username"]').click();
+  await page.locator('[data-test="username"]').fill('standard_user111');
+  await page.locator('[data-test="password"]').click();
+  await page.locator('[data-test="password"]').fill('secret_sauce');
+  await page.locator('[data-test="login-button"]').click();
+  await expect(page.locator('[data-test="error"]')).toBeVisible();
+
+  
+  });
+
 
 test('add-to-cart', async ({ page }) => {
   //membuka web
